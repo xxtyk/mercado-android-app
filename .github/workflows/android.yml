@@ -24,16 +24,16 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Grant execute permission
-        run: chmod +x ./mercado_android_app/gradlew
+      - name: Install Gradle
+        uses: gradle/actions/setup-gradle@v3
 
       - name: Build AAB
         run: |
-          cd mercado_android_app
-          ./gradlew bundleRelease
+          cd mercado_android_app-3
+          gradle bundleRelease
 
       - name: Upload AAB
         uses: actions/upload-artifact@v4
         with:
-          name: MercadoEnLineaCuliacan
-          path: mercado_android_app/app/build/outputs/bundle/release/app-release.aab
+          name: MercadoEnLineaCuliacan-AAB
+          path: mercado_android_app-3/app/build/outputs/bundle/release/*.aab

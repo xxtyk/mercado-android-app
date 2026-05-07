@@ -15,6 +15,9 @@ jobs:
       - name: Unzip project
         run: unzip mercado_android_app-3.zip
 
+      - name: Show files
+        run: ls
+
       - name: Setup JDK
         uses: actions/setup-java@v3
         with:
@@ -29,11 +32,11 @@ jobs:
 
       - name: Build AAB
         run: |
-          cd mercado_android_app-3
+          cd mercado_android_app
           gradle bundleRelease
 
       - name: Upload AAB
         uses: actions/upload-artifact@v4
         with:
           name: MercadoEnLineaCuliacan-AAB
-          path: mercado_android_app-3/app/build/outputs/bundle/release/*.aab
+          path: mercado_android_app/app/build/outputs/bundle/release/*.aab
